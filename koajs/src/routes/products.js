@@ -1,6 +1,7 @@
 import Router from 'koa-router';
 import { validateProduct, productSchema } from '../middleware/validateProduct.js';
 import * as handlers from '../handlers/productHandlers.js';
+import { printValue } from 'yup';
 
 const router = new Router({ prefix: '/api' });
 
