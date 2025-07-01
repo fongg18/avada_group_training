@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo Detail</title>
+</head>
+<body>
+  <h1>Todo Detail</h1>
+  <p><strong>Text:</strong> <%= todo.text %></p>
+  <p><strong>Status:</strong> <%= todo.isCompleted ? 'Completed' : 'Pending' %></p>
+  <p><strong>Created At:</strong> <%= new Date(todo.createdAt).toLocaleString() %></p>
+  <a href="/todos/<%= todo.id %>/edit">Edit</a>
+  <form action="/todos/<%= todo.id %>?_method=DELETE" method="POST" style="display:inline;">
+    <button type="submit">Delete</button>
+  </form>
+  <br>
+  <a href="/todos">Back to List</a>
+</body>
+</html>

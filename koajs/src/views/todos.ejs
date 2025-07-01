@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <a href="/todos/new">Add New Todo</a>
+  <% if (Array.isArray(todos) && todos.length > 0) { %>
+    <ul>
+      <% todos.forEach(function(todo) { %>
+        <li>
+          <a href="/todos/<%= todo.id %>"><%= todo.text %></a>
+          (<%= todo.isCompleted ? 'Done' : 'Pending' %>)
+          <a href="/todos/<%= todo.id %>/edit">Edit</a>
+          <form action="/todos/<%= todo.id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No todos found.</p>
+  <% } %>
+</body>
+</html>

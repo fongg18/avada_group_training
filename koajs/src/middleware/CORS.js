@@ -8,7 +8,7 @@ import cors from '@koa/cors';
 
 const app = new Koa();
 
-app.use(cors());
+app.use(cors()); 
 app.use(koaBody());
 app.use(
   views(path.join(path.resolve(), 'src/views'), {
@@ -17,7 +17,6 @@ app.use(
 );
 app.use(methodOverride('_method'));
 
-// routers là mảng các middleware
 routers.forEach(r => app.use(r));
 
 app.listen(5000, () => {

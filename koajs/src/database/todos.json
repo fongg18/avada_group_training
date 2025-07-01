@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "text": "Sample todo",
+      "isCompleted": false,
+      "createdAt": "2025-06-27T12:00:00.000Z"
+    }
+  ]
+}

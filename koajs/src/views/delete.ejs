@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete Todo</title>
+</head>
+<body>
+  <h1>Delete Todo</h1>
+  <p>Are you sure you want to delete "<%= todo.text %>"?</p>
+  <form action="/todos/<%= todo.id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+</body>
+</html>

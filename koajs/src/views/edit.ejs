@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Todo</title>
+</head>
+<body>
+  <h1>Edit Todo</h1>
+  <form action="/todos/<%= todo.id %>/edit" method="POST">
+    <input type="text" name="text" value="<%= todo.text %>" required>
+    <input type="checkbox" name="isCompleted" <%= todo.isCompleted ? 'checked' : '' %>>
+    <button type="submit">Update</button>
+    </form>
+  <a href="/todos/<%= todo.id %>">Back to Detail</a>
+</body>
+</html>
