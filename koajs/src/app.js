@@ -3,21 +3,18 @@ import koaBody from 'koa-body';
 import views from 'koa-views';
 import path from 'path';
 import routers from './routes/todos.js';
-import methodOverride from 'koa-methodoverride';
 import cors from '@koa/cors';
 
 const app = new Koa();
 
 app.use(cors());
 app.use(koaBody());
-app.use(
-  views(path.join(path.resolve(), 'src/views'), {
-    extension: 'ejs'
-  })
-);
-app.use(methodOverride('_method'));
+// app.use(
+//   views(path.join(path.resolve(), 'src/views'), {
+//     extension: 'ejs'
+//   })
+// );;
 
-// routers là mảng các middleware
 routers.forEach(r => app.use(r));
 
 app.listen(5000, () => {

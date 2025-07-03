@@ -1,9 +1,10 @@
 import React from "react";
 
 /**
- *
- * @param {*} param0
- * @returns
+ * Renders a form to add a new todo item.
+ * @param {Object} param0 - Props object.
+ * @param {Function} param0.addTodo - Function to add a new todo.
+ * @returns {JSX.Element} The rendered todo form component.
  */
 function TodoForm({ addTodo }) {
   const [value, setValue] = React.useState("");

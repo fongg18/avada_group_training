@@ -2,20 +2,27 @@ import * as repo from '../database/todoRepository.js';
 
 import fetch from 'node-fetch';
 
-// Chỉ fetch todos từ jsonplaceholder
-export const fetchExternalTodos = async (ctx) => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
-  if (!res.ok) {
-    ctx.status = 502;
-    ctx.body = { error: 'Failed to fetch external todos' };
-    return;
-  }
-  const todos = await res.json();
-  ctx.body = todos;
-};
+// export const fetchExternalTodos = async (ctx) => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+//   if (!res.ok) {
+//     ctx.status = 502;
+//     ctx.body = { error: 'Failed to fetch external todos' };
+//     return;
+//   }
+//   const todos = await res.json();
+//   ctx.body = todos;
+// };
 
 
-// Higher order function cho API handler
+/**
+ * Higher-order function to create a Koa handler for a repository function.
+ * Automatically extracts the id from params if present, calls the repo function,
+ * and handles 404 if not found, otherwise returns the result.
+ * 
+ * @param {Function} repoFn - The repository function to handle the data logic (e.g., getOne, add, update, remove).
+ * @param {string} [notFoundMsg='Todo not found'] - Custom error message if the resource is not found.
+ * @returns {Function} - A Koa middleware function that handles the request and response.
+ */
 const withRepo = (repoFn, notFoundMsg = 'Todo not found') => (ctx) => {
   const id = ctx.params.id ? Number(ctx.params.id) : undefined;
   const result = id !== undefined ? repoFn(id, ctx.request?.body) : repoFn(ctx.request?.body);
@@ -27,49 +34,48 @@ const withRepo = (repoFn, notFoundMsg = 'Todo not found') => (ctx) => {
   ctx.body = result;
 };
 
-// API handlers
-export const getTodos = (ctx) => { ctx.body = repo.getAll(); };
+export const getTodos = withRepo(repo.getAll, 'No todos found');
 export const getTodoById = withRepo(repo.getOne);
 export const createTodo = withRepo(repo.add);
 export const updateTodo = withRepo(repo.update);
 export const deleteTodo = withRepo(repo.remove);
 
-// Higher order function cho view handler
-const renderView = (view, repoFn) => async (ctx) => {
-  const id = ctx.params.id ? Number(ctx.params.id) : undefined;
-  const data = id !== undefined ? repoFn(id) : undefined;
-  if (repoFn && id !== undefined && !data) {
-    ctx.status = 404;
-    ctx.body = 'Todo not found';
-    return;
-  }
-  await ctx.render(view, data ? { todo: data } : {});
-};
+// // Higher order function cho view handler
+// const renderView = (view, repoFn) => async (ctx) => {
+//   const id = ctx.params.id ? Number(ctx.params.id) : undefined;
+//   const data = id !== undefined ? repoFn(id) : undefined;
+//   if (repoFn && id !== undefined && !data) {
+//     ctx.status = 404;
+//     ctx.body = 'Todo not found';
+//     return;
+//   }
+//   await ctx.render(view, data ? { todo: data } : {});
+// };
 
-// View handlers
-export const renderTodosView = async (ctx) => {
-  const todos = repo.getAll();
-  await ctx.render('todos', { todos });
-};
-export const renderNewTodoView = renderView('new');
-export const renderShowTodoView = renderView('show', repo.getOne);
-export const renderEditTodoView = renderView('edit', repo.getOne);
-export const renderDeleteTodoView = renderView('delete', repo.getOne);
+// // View handlers
+// export const renderTodosView = async (ctx) => {
+//   const todos = repo.getAll();
+//   await ctx.render('todos', { todos });
+// };
+// export const renderNewTodoView = renderView('new');
+// export const renderShowTodoView = renderView('show', repo.getOne);
+// export const renderEditTodoView = renderView('edit', repo.getOne);
+// export const renderDeleteTodoView = renderView('delete', repo.getOne);
 
-// Xử lý tạo mới từ form
-export const createTodoView = async (ctx) => {
-  repo.add(ctx.request.body);
-  ctx.redirect('/todos');
-};
+// // Xử lý tạo mới từ form
+// export const createTodoView = async (ctx) => {
+//   repo.add(ctx.request.body);
+//   ctx.redirect('/todos');
+// };
 
-// Xử lý cập nhật từ form
-export const updateTodoView = async (ctx) => {
-  repo.update(Number(ctx.params.id), ctx.request.body);
-  ctx.redirect('/todos');
-};
+// // Xử lý cập nhật từ form
+// export const updateTodoView = async (ctx) => {
+//   repo.update(Number(ctx.params.id), ctx.request.body);
+//   ctx.redirect('/todos');
+// };
 
-// Xử lý xoá từ form
-export const deleteTodoView = async (ctx) => {
-  repo.remove(Number(ctx.params.id));
-  ctx.redirect('/todos');
-};
+// // Xử lý xoá từ form
+// export const deleteTodoView = async (ctx) => {
+//   repo.remove(Number(ctx.params.id));
+//   ctx.redirect('/todos');
+// };

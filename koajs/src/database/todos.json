@@ -1,10 +1,24 @@
 {
   "data": [
-    {
-      "id": 1,
-      "text": "Sample todo",
-      "isCompleted": false,
-      "createdAt": "2025-06-27T12:00:00.000Z"
-    }
+    { "id": 1, "text": "Sample todo", "isCompleted": false, "createdAt": "2025-06-27T12:00:00.000Z" },
+    { "id": 2, "text": "Buy groceries", "isCompleted": false, "createdAt": "2025-06-28T09:30:00.000Z" },
+    { "id": 3, "text": "Finish React project", "isCompleted": true, "createdAt": "2025-06-29T15:45:00.000Z" },
+    { "id": 4, "text": "Read a book", "isCompleted": false, "createdAt": "2025-06-30T20:10:00.000Z" },
+    { "id": 5, "text": "Call mom", "isCompleted": true, "createdAt": "2025-07-01T08:00:00.000Z" },
+    { "id": 6, "text": "Clean the house", "isCompleted": false, "createdAt": "2025-07-01T10:30:00.000Z" },
+    { "id": 7, "text": "Pay bills", "isCompleted": false, "createdAt": "2025-07-01T12:00:00.000Z" },
+    { "id": 8, "text": "Go for a run", "isCompleted": true, "createdAt": "2025-07-01T18:00:00.000Z" },
+    { "id": 9, "text": "Prepare dinner", "isCompleted": false, "createdAt": "2025-07-01T19:00:00.000Z" },
+    { "id": 10, "text": "Write blog post", "isCompleted": false, "createdAt": "2025-07-02T09:00:00.000Z" },
+    { "id": 11, "text": "Review pull requests", "isCompleted": true, "createdAt": "2025-07-02T11:00:00.000Z" },
+    { "id": 12, "text": "Plan weekend trip", "isCompleted": false, "createdAt": "2025-07-02T13:00:00.000Z" },
+    { "id": 13, "text": "Attend team meeting", "isCompleted": true, "createdAt": "2025-07-02T15:00:00.000Z" },
+    { "id": 14, "text": "Update resume", "isCompleted": false, "createdAt": "2025-07-02T17:00:00.000Z" },
+    { "id": 15, "text": "Backup laptop", "isCompleted": false, "createdAt": "2025-07-02T20:00:00.000Z" },
+    { "id": 16, "text": "Read tech news", "isCompleted": true, "createdAt": "2025-07-03T08:30:00.000Z" },
+    { "id": 17, "text": "Organize desk", "isCompleted": false, "createdAt": "2025-07-03T10:00:00.000Z" },
+    { "id": 18, "text": "Meditate", "isCompleted": false, "createdAt": "2025-07-03T12:00:00.000Z" },
+    { "id": 19, "text": "Water plants", "isCompleted": true, "createdAt": "2025-07-03T14:00:00.000Z" },
+    { "id": 20, "text": "Schedule dentist appointment", "isCompleted": false, "createdAt": "2025-07-03T16:00:00.000Z" }
   ]
 }
